@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
+import { CgProfile } from "react-icons/cg";
 import { useSelector } from "react-redux";
 
 
@@ -15,35 +15,32 @@ const Navbar = () => {
   
 
   return (
-    <header className=" fonts-Poppins bg-slate-200 shadow-md ">
-      <div className=" flex justify-between items-center max-w-6xl mx-auto p-3">
-        <Link to="/">
+    <header className=" fonts-Poppins bg-[#2f3d7e] shadow-md text-[#faeaeb]">
+      <div className=" flex justify-between items-center max-w-6xl mx-auto p-4">
+        <Link to="#">
           <h1 className=" font-bold text-sm sm:text-xl flex flex-wrap ">
-            <span className="text-slate-500">Saral</span>
-            <span className=" text-slate-700">Bank</span>
+            <span className="">Saral</span>
+            <span className=" ">Bank</span>
           </h1>
         </Link>
 
-        <ul className=" flex gap-4">
-          <Link to="/">
-            <li className=" hidden sm:inline text-slate-700 hover:underline hover:text-slate-400">
+        <ul className=" flex gap-4 items-center">
+          <Link to="#">
+            <li className=" hidden sm:inline  hover:underline hover:text-slate-400">
               Home
             </li>
           </Link>
 
-          <Link to="about">
-            <li className=" hidden sm:inline text-slate-700 hover:underline hover:text-slate-400">
+          <Link to="#">
+            <li className=" hidden sm:inline hover:underline hover:text-slate-400">
               About
             </li>
           </Link>
 
-          <Link to="profile">
+          <Link to="profile" className="">
             {currentUser ? (
-              <img
-                className=" rounded-full h-7 w-7 object-cover"
-                src={currentUser.avatar}
-                alt="profile"
-              />
+              
+              <CgProfile className=" text-xl align-middle"/>
             ) : (
               <li className=" text-slate-700 hover:underline hover:text-slate-400">
                 Sign In

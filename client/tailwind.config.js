@@ -5,15 +5,20 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
-    fontFamily: {
-      Higuen:"Higuen",
-      Norwester:'Norwester',
-      Rubik:['sans-serif'],
-      Tilt_Prism:['cursive'],
-      Outfit:['sans-serif'],
-      Poppins: ['sans-serif']
+    extend: {
+      fontFamily: {
+        Higuen:"Higuen",
+        Norwester:'Norwester',
+        Rubik:['sans-serif'],
+        Tilt_Prism:['cursive'],
+        Outfit:['sans-serif'],
+        Poppins: ['sans-serif']
+      },
+      colors: {
+        'custom-beige': '#fffbea',
+      },
     },
+    
   },
   // plugins: [
   //   require('@tailwindcss/line-clamp'),

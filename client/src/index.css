@@ -5,10 +5,13 @@
 @tailwind utilities;
 
 
-
-body{
-    background-color: rgb(241, 245, 241);
+root{
+ background-color: #fffbea;
 }
+/* 
+body {
+    @apply bg-custom-beige;
+  } */
 
 @font-face {
     font-family: Higuen;

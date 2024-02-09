@@ -9,7 +9,7 @@ import {
 
 
 
-export default function UserSignIn() {
+export default function BankersignIn() {
   const [formData, setFormData] = useState({});
   const {currentUser, loading, error } = useSelector((state) => state.user);
 
@@ -25,7 +25,7 @@ export default function UserSignIn() {
     e.preventDefault();
     try {
         dispatch(signInStart());
-      const res = await fetch("/api/auth/user-login", {
+      const res = await fetch("/api/auth/banker-login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -39,14 +39,14 @@ export default function UserSignIn() {
         return;
       }
       dispatch(signInSuccess(data));
-      navigate('/transactions');
+      navigate('/bankerdash');
     } catch (error) {
       dispatch(signInFailure(error.message));
     }
   };
   return (
     <div className="p-3 max-w-lg mx-auto ">
-      <h1 className="text-3xl text-center font-semibold my-7">Sign In</h1>
+      <h1 className="text-3xl text-center font-semibold my-7">Banker Sign In</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input
           type="email"

@@ -52,7 +52,11 @@ const UserRegister = () => {
 
       setLoading(false);
       setError(null);
-      navigate("/usersign-ip");
+      if (formData.isBanker) {
+        navigate("/bankersign-in");
+      } else {
+        navigate("/usersign-in");
+      }
     } catch (error) {
       setLoading(false);
       setError(error.message);
@@ -97,7 +101,7 @@ const UserRegister = () => {
         </div>
         <button
           disabled={loading}
-          className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
+          className="bg-[#2f3d7e] text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
         >
           {loading ? "Loading..." : "Sign up"}
         </button>
@@ -105,7 +109,7 @@ const UserRegister = () => {
       </form>
       <div className="flex gap-2 mt-5">
         <p>Have an Account?</p>
-        <Link to={"/sign-in"} className="text-blue-500">
+        <Link to={"/usersign-in"} className="text-blue-500">
           Sign in
         </Link>
       </div>
