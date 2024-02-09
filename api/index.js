@@ -23,11 +23,19 @@ app.use(cookieParser());
 app.use(express.json());
 const port = 3002;
 
-
+const __dirname = path.resolve();
 
 app.use('/api/user', userRoutes);
 app.use('/api/auth', authRouter);
 app.use('/api/banker', bankerRouter);
+
+
+app.use(express.static(path.join(__dirname, '/client/dist')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
+})
+
 
 const PORT = process.env.PORT || 3002;
 app.listen(PORT, () => console.log(`Server running on port http://localhost:${PORT}`));
