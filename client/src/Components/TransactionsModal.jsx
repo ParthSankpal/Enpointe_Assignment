@@ -36,7 +36,7 @@ const TransactionsModal = ({ isOpen, toggleModal, transactions }) => {
             <span className="sr-only">Close</span>
           </button>
           <div className=" w-full">
-            <h3 className="mb-4 text-xl font-medium text-[#2f3d7e] ">Transaction Details</h3>
+            <h3 className="mb-4 text-xl text-[#2f3d7e] font-bold">Transaction Details</h3>
             <div className="overflow-auto">
               {/* Here you render the TransactionTable component, passing the transactions */}
               <TransactionTable transactions={transactions} />

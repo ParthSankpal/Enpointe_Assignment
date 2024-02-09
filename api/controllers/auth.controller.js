@@ -133,3 +133,13 @@ export const loginBanker = async (req, res) => {
   }
 };
 
+export const signout = async (req, res, next) => {
+  try {
+
+    console.log("INLOOOOOOOOP");
+    res.clearCookie("access_token");
+    res.status(200).json("User has been signed out");
+  } catch (error) {
+    next(error);
+  }
+};

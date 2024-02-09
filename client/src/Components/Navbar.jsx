@@ -3,21 +3,18 @@ import { Link, useNavigate } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
 import { useSelector } from "react-redux";
 
-
 const Navbar = () => {
- const [currentUser, setcurrent] = useState([])
-  const [searchTerm, setSearchTerm] = useState("");
-
   const navigate = useNavigate();
 
-  
-
-  
+  const handleSelectChange = (event) => {
+    navigate(event.target.value);
+  };
+  const { currentUser } = useSelector((state) => state.user);
 
   return (
-    <header className=" fonts-Poppins bg-[#2f3d7e] shadow-md text-[#faeaeb]">
+    <header className="  font-Spotify bg-[#2f3d7e] shadow-md text-[#faeaeb]">
       <div className=" flex justify-between items-center max-w-6xl mx-auto p-4">
-        <Link to="#">
+        <Link to="/">
           <h1 className=" font-bold text-sm sm:text-xl flex flex-wrap ">
             <span className="">Saral</span>
             <span className=" ">Bank</span>
@@ -25,7 +22,7 @@ const Navbar = () => {
         </Link>
 
         <ul className=" flex gap-4 items-center">
-          <Link to="#">
+          <Link to="/">
             <li className=" hidden sm:inline  hover:underline hover:text-slate-400">
               Home
             </li>
@@ -37,16 +34,23 @@ const Navbar = () => {
             </li>
           </Link>
 
-          <Link to="profile" className="">
+          
             {currentUser ? (
-              
-              <CgProfile className=" text-xl align-middle"/>
+              <Link to="profile" className=""><CgProfile className=" text-xl align-middle" /></Link>
             ) : (
-              <li className=" text-slate-700 hover:underline hover:text-slate-400">
-                Sign In
-              </li>
+              <select
+                id="countries"
+                className="bg-[#2f3d7e] text-white rounded-lg block w-full p-2.5"
+                onChange={handleSelectChange} 
+              >
+                <option value="/usersign-in">Sign in</option>{" "}
+                <option value="/bankersign-in">
+                  Sign in as a Bank Official
+                </option>
+                <option value="/usersign-in">Sign in as Customer</option>
+              </select>
             )}
-          </Link>
+          
         </ul>
       </div>
     </header>
