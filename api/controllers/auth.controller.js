@@ -41,7 +41,7 @@ export const registerUser = async (req, res) => {
         // Insert initial deposit transaction
         await db.query(
           "INSERT INTO transactions (AccountID, Amount, Type, Description) VALUES (?, ?, ?, ?)",
-          [accountId, 500.00, 'deposit', 'Initial deposit']
+          [accountId, 500, 'deposit', 'Initial deposit']
         );
     }
 
