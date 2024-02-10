@@ -7,7 +7,8 @@ export default defineConfig({
   server:{
     proxy:{
       '/api':{
-        target:  'http://localhost:3002',
+        target:  'http://enpointeassignment-production.up.railway.app',  //Should be kept in .env
+        //localhost:3002
         secure:false,
       },
     }
