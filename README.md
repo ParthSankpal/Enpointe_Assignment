@@ -2,6 +2,9 @@
 
 Saral Bank is a modern web application designed to simplify banking operations like deposits and withdrawals, offering users a seamless and secure platform for their financial transactions. With a focus on user experience, Saral Bank empowers customers with easy-to-use features wrapped in a clean, intuitive interface.
 
+### Facing Issue while Deployment of SQL Database Refer this link to demonstrate teh working of project 
+[a link] (https://drive.google.com/file/d/1VedZ1kFZYrWJNPktjLTKfgQR23kII4fU/view?usp=drive_link)
+
 ## Features
 
 - **User Authentication**: Secure sign-in and registration process for customers and bank officials.
