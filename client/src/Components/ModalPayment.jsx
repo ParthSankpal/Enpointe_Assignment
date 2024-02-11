@@ -92,6 +92,7 @@ const ModalPayment = ({
           background: "white",
           borderRadius: "8px",
           maxWidth: "520px",
+          maxHeight : "520px",
           margin: "0 auto",
           padding: "20px",
         },

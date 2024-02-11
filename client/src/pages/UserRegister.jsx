@@ -29,7 +29,7 @@ const UserRegister = () => {
 
     try {
       setLoading(true);
-      console.log(formData, "IN_SUBMIT");
+      // console.log(formData, "IN_SUBMIT");
       const res = await fetch("/api/auth/user-register", {
         method: "POST",
         headers: {

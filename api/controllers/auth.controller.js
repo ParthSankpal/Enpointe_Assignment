@@ -5,58 +5,62 @@ import { promisePool as db } from "../db.js";
 export const registerUser = async (req, res) => {
   let { username, email, password, isBanker } = req.body;
 
-  // Convert boolean isBanker to an integer (1 for true, 0 for false)
+  
   isBanker = isBanker ? 1 : 0;
-
+  
   try {
     // Check if user already exists
     const [user] = await db.query("SELECT * FROM users WHERE Email = ?", [email]);
     if (user.length > 0) {
       return res.status(409).send("User already exists");
-    }
 
+    }
+    
+    console.log('USer not exist');
     // Hash password
     const hashedPassword = await bcrypt.hash(password, 8);
-
+    
     // Start a transaction
     await db.query("START TRANSACTION");
-
+    
     // Insert new user into database
     const result = await db.query(
       "INSERT INTO users (Username, Email, Password, IsBanker) VALUES (?, ?, ?, ?)",
       [username, email, hashedPassword, isBanker]
-    );
-
-    const userId = result[0].insertId;
-
-    if(isBanker === 0){ // Use the converted integer value for condition
+      );
+      
+      const userId = result[0].insertId;
+      console.log(userId,"OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+      
+      if(isBanker === 0){ // Use the converted integer value for condition
         // Insert new account with initial balance
         const accountResult = await db.query(
           "INSERT INTO accounts (UserID, Balance) VALUES (?, ?)",
           [userId, 500.00]
-        );
-
-        const accountId = accountResult[0].insertId;
-
-        // Insert initial deposit transaction
-        await db.query(
-          "INSERT INTO transactions (AccountID, Amount, Type, Description) VALUES (?, ?, ?, ?)",
-          [accountId, 500, 'deposit', 'Initial deposit']
-        );
-    }
-
-    // Commit the transaction
-    await db.query("COMMIT");
-
-    // Prepare the response, conditionally include accountId if isBanker is false
-    const response = { message: "User registered successfully", userId };
-    if (isBanker === 0) {
-      response.accountId = accountId;
-    }
-
-    res.status(201).send(response);
-  } catch (error) {
-    // Rollback the transaction if an error occurs
+          );
+          console.log(username, email, password, isBanker);
+          
+          const accountId = accountResult[0].insertId;
+          
+          // Insert initial deposit transaction
+          await db.query(
+            "INSERT INTO transactions (AccountID, Amount, Type, Description) VALUES (?, ?, ?, ?)",
+            [accountId, 500, 'deposit', 'Initial deposit']
+            );
+          }
+          
+          // Commit the transaction
+          await db.query("COMMIT");
+          
+          // Prepare the response, conditionally include accountId if isBanker is false
+          const response = { message: "User registered successfully", userId };
+          if (isBanker === 0) {
+            response.accountId = accountId;
+          }
+          
+          res.status(201).send(response);
+        } catch (error) {
+          // Rollback the transaction if an error occurs
     await db.query("ROLLBACK");
     res.status(500).send({ message: "Error registering user", error: error.message });
   }
