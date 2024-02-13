@@ -2,7 +2,10 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { promisePool as db } from "../db.js";
 
+<<<<<<< HEAD
 // export const registerUser = async (req, res) => {
+=======
+>>>>>>> fd6597fc20860eb5c6cc368774749f08356dd1a8
 //   let { username, email, password, isBanker } = req.body;
 
 //   console.log(username, email, password, isBanker);
@@ -99,9 +102,13 @@ export const registerUser = async (req, res) => {
 
       try {
         // Insert initial deposit transaction
+<<<<<<< HEAD
         const currentDate = new Date().toISOString().slice(0, 19).replace('T', ' '); // Formats the current date and time to 'YYYY-MM-DD HH:MM:SS'
         
         await db.query("INSERT INTO transactions (AccountID, Amount, Type,TransactionDate, Description) VALUES (?, ?, ?, ?)", [accountId, 500, "deposit", currentDate,"Initial deposit"]);
+=======
+        await db.query("INSERT INTO transactions (AccountID, Amount, Type, Description) VALUES (?, ?, ?, ?)", [accountId, 500, "deposit", "Initial deposit"]);
+>>>>>>> fd6597fc20860eb5c6cc368774749f08356dd1a8
       } catch (error) {
         throw new Error("Error creating initial transaction");
       }

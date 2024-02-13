@@ -32,7 +32,10 @@ app.use('/api/banker', bankerRouter);
 
 app.use(express.static(path.join(__dirname, '/client')));
 
+<<<<<<< HEAD
 console.log(__dirname, '/client');
+=======
+>>>>>>> fd6597fc20860eb5c6cc368774749f08356dd1a8
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'client',  'index.html'));
