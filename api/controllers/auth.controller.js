@@ -2,71 +2,6 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { promisePool as db } from "../db.js";
 
-<<<<<<< HEAD
-// export const registerUser = async (req, res) => {
-=======
->>>>>>> fd6597fc20860eb5c6cc368774749f08356dd1a8
-//   let { username, email, password, isBanker } = req.body;
-
-//   console.log(username, email, password, isBanker);
-//   isBanker = isBanker ? 1 : 0;
-
-//   try {
-//     // Check if user already exists
-//     const [user] = await db.query("SELECT * FROM users WHERE Email = ?", [
-//       email,
-//     ]);
-//     if (user.length > 0) {
-//       return res.status(409).send("User already exists");
-//     }
-
-//     const hashedPassword = await bcrypt.hash(password, 8);
-//     console.log(hashedPassword,"HASHED PASSWORD");
-
-//     await db.query("START TRANSACTION");
-
-//     // Insert new user into database
-//     const result = await db.query(
-//       "INSERT INTO users (Username, Email, Password, IsBanker) VALUES (?, ?, ?, ?)",
-//       [username, email, hashedPassword, isBanker]
-//     );
-
-//     const userId = result[0].insertId;
-
-//     if (isBanker === 0) {
-//       const accountResult = await db.query(
-//         "INSERT INTO accounts (UserID, Balance) VALUES (?, ?)",
-//         [userId, 500]
-//       );
-//       // console.log(username, email, password, isBanker);
-
-//       const accountId = accountResult[0].insertId;
-
-//       await db.query(
-//         "INSERT INTO transactions (AccountID, Amount, Type, Description) VALUES (?, ?, ?, ?)",
-//         [accountId, 500, "deposit", "Initial deposit"]
-//       );
-//     }
-
-//     // Commit the transaction
-//     await db.query("COMMIT");
-
-//     // Prepare the response, conditionally include accountId if isBanker is false
-//     const response = { message: "User registered successfully", userId };
-//     if (isBanker === 0) {
-//       response.accountId = accountId;
-//     }
-
-//     res.status(201).send(response);
-//   } catch (error) {
-//     // Rollback the transaction if an error occurs
-//     await db.query("ROLLBACK");
-//     res
-//       .status(500)
-//       .send({ message: "Error registering user", error: error.message });
-//   }
-// };
-
 export const registerUser = async (req, res) => {
   let { username, email, password, isBanker } = req.body;
   isBanker = isBanker ? 1 : 0;
@@ -102,13 +37,10 @@ export const registerUser = async (req, res) => {
 
       try {
         // Insert initial deposit transaction
-<<<<<<< HEAD
         const currentDate = new Date().toISOString().slice(0, 19).replace('T', ' '); // Formats the current date and time to 'YYYY-MM-DD HH:MM:SS'
         
         await db.query("INSERT INTO transactions (AccountID, Amount, Type,TransactionDate, Description) VALUES (?, ?, ?, ?)", [accountId, 500, "deposit", currentDate,"Initial deposit"]);
-=======
         await db.query("INSERT INTO transactions (AccountID, Amount, Type, Description) VALUES (?, ?, ?, ?)", [accountId, 500, "deposit", "Initial deposit"]);
->>>>>>> fd6597fc20860eb5c6cc368774749f08356dd1a8
       } catch (error) {
         throw new Error("Error creating initial transaction");
       }
