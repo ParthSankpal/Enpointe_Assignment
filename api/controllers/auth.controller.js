@@ -39,8 +39,8 @@ export const registerUser = async (req, res) => {
         // Insert initial deposit transaction
         const currentDate = new Date().toISOString().slice(0, 19).replace('T', ' '); // Formats the current date and time to 'YYYY-MM-DD HH:MM:SS'
         
-        await db.query("INSERT INTO transactions (AccountID, Amount, Type,TransactionDate, Description) VALUES (?, ?, ?, ?)", [accountId, 500, "deposit", currentDate,"Initial deposit"]);
-        // await db.query("INSERT INTO transactions (AccountID, Amount, Type, Description) VALUES (?, ?, ?, ?)", [accountId, 500, "deposit", "Initial deposit"]);
+        // await db.query("INSERT INTO transactions (AccountID, Amount, Type,TransactionDate, Description) VALUES (?, ?, ?, ?)", [accountId, 500, "deposit", currentDate,"Initial deposit"]);
+        await db.query("INSERT INTO transactions (AccountID, Amount, Type, Description) VALUES (?, ?, ?, ?)", [accountId, 500, "deposit", "Initial deposit"]);
       } catch (error) {
         throw new Error("Error creating initial transaction");
       }
