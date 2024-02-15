@@ -113,6 +113,12 @@ const UserRegister = () => {
           Sign in
         </Link>
       </div>
+      <div className="flex gap-2 mt-5">
+        <p>Have an Account as Banker ?</p>
+        <Link to={"/bankersign-in"} className="text-blue-500">
+          Sign in
+        </Link>
+      </div>
       {error && <p className="text-red-500 mt-5">{error}</p>}
     </div>
   );
